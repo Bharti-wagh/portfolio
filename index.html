@@ -749,7 +749,6 @@ function type() {
     if (!del) {
         tw.textContent = cur.slice(0, ci + 1);
         ci++;
-
         if (ci === cur.length) {
             del = true;
             setTimeout(type, 1400);
@@ -758,7 +757,6 @@ function type() {
     } else {
         tw.textContent = cur.slice(0, ci - 1);
         ci--;
-
         if (ci === 0) {
             del = false;
             ri = (ri + 1) % roles.length;
