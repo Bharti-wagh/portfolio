@@ -719,13 +719,10 @@ window.addEventListener('load',()=>{
 function startSite(){
   /* HERO LETTER REVEAL */
   const text = "BHARTI WAGH";
-
 name.innerHTML = "";
-
 [...text].forEach((c) => {
     const s = document.createElement("span");
     s.className = "char";
-
     if (c === " ") {
         s.innerHTML = "&nbsp;";
         s.style.display = "inline-block";
@@ -733,7 +730,6 @@ name.innerHTML = "";
     } else {
         s.textContent = c;
     }
-
     name.appendChild(s);
 });
   gsap.to('.char',{opacity:1,y:0,duration:.7,stagger:.05,ease:'power3.out',delay:.2});
