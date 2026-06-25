@@ -718,16 +718,24 @@ window.addEventListener('load',()=>{
 
 function startSite(){
   /* HERO LETTER REVEAL */
-  const name=document.getElementById('hero-name');
-  const text='BHARTI WAGH';
-  name.innerHTML='';
-  [...text].forEach((c,i)=>{
-    const s=document.createElement('span');
-    s.className='char';
-    s.textContent=c===''?' ':c;
-    if(c===' ')s.style.display='inline-block';
+  const text = "BHARTI WAGH";
+
+name.innerHTML = "";
+
+[...text].forEach((c) => {
+    const s = document.createElement("span");
+    s.className = "char";
+
+    if (c === " ") {
+        s.innerHTML = "&nbsp;";
+        s.style.display = "inline-block";
+        s.style.width = "24px";   // Increase for more space
+    } else {
+        s.textContent = c;
+    }
+
     name.appendChild(s);
-  });
+});
   gsap.to('.char',{opacity:1,y:0,duration:.7,stagger:.05,ease:'power3.out',delay:.2});
 
   /* TYPEWRITER */
