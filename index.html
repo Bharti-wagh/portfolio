@@ -735,21 +735,38 @@ name.innerHTML = "";
   gsap.to('.char',{opacity:1,y:0,duration:.7,stagger:.05,ease:'power3.out',delay:.2});
 
   /* TYPEWRITER */
-  const roles=['Python Developer','Full Stack Engineer','Django Expert','API Architect','ML Engineer'];
-  const tw=document.getElementById('typewriter');
-  let ri=0,ci=0,del=false;
-  function type(){
-    const cur=roles[ri];
-    if(!del){
-      tw.textContent=cur.slice(0,ci+1);ci++;
-      if(ci===cur.length){del=true;setTimeout(type,1400);return;}
-    }else{
-      tw.textContent=cur.slice(0,ci-1);ci--;
-      if(ci===0){del=false;ri=(ri+1)%roles.length;}
+const roles = [
+  'Python Developer',
+  'Full Stack Engineer',
+  'Django Expert',
+  'API Architect',
+  'ML Engineer'
+];
+const tw = document.getElementById('typewriter');
+let ri = 0, ci = 0, del = false;
+function type() {
+    const cur = roles[ri];
+    if (!del) {
+        tw.textContent = cur.slice(0, ci + 1);
+        ci++;
+
+        if (ci === cur.length) {
+            del = true;
+            setTimeout(type, 1400);
+            return;
+        }
+    } else {
+        tw.textContent = cur.slice(0, ci - 1);
+        ci--;
+
+        if (ci === 0) {
+            del = false;
+            ri = (ri + 1) % roles.length;
+        }
     }
-    setTimeout(type,del?55:90);
-  }
-  setTimeout(type,800);
+    setTimeout(type, del ? 55 : 90);
+}
+setTimeout(type, 800);
 
   /* MAGNETIC BUTTONS */
   document.querySelectorAll('.btn').forEach(btn=>{
