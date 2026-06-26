@@ -301,7 +301,7 @@ footer span{color:var(--blue);}
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-badge">🚀 Available for Opportunities</div>
-    <h1 class="hero-name glitch" data-text="BHARTI WAGH" id="hero-name">BHARTI WAGH</h1>
+    <h1 class="hero-name glitch" data-text="BHARTI WAGH" id="hero-name">BHARTI    WAGH</h1>
     <div class="hero-subtitle">
       <span class="hero-subtitle-pre">I craft</span>
       <span class="typewriter" id="typewriter">Python Developer</span>
@@ -718,53 +718,56 @@ window.addEventListener('load',()=>{
 
 function startSite(){
   /* HERO LETTER REVEAL */
-  const text = "BHARTI WAGH";
+  const name = document.getElementById("hero-name");
+const text = "BHARTI WAGH";
+
 name.innerHTML = "";
-[...text].forEach((c) => {
-    const s = document.createElement("span");
-    s.className = "char";
-    if (c === " ") {
-        s.innerHTML = "&nbsp;";
-        s.style.display = "inline-block";
-        s.style.width = "24px";   // Increase for more space
+
+text.split("").forEach((char) => {
+    const span = document.createElement("span");
+    span.classList.add("char");
+
+    if (char === " ") {
+        span.innerHTML = "&nbsp;"; // Preserve the space
     } else {
-        s.textContent = c;
+        span.textContent = char;
     }
-    name.appendChild(s);
+
+    name.appendChild(span);
 });
-  gsap.to('.char',{opacity:1,y:0,duration:.7,stagger:.05,ease:'power3.out',delay:.2});
+
+gsap.fromTo(
+    ".char",
+    {
+        opacity: 0,
+        y: 40
+    },
+    {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.05,
+        ease: "power3.out",
+        delay: 0.2
+    }
+);
 
   /* TYPEWRITER */
-const roles = [
-  'Python Developer',
-  'Full Stack Engineer',
-  'Django Expert',
-  'API Architect',
-  'ML Engineer'
-];
-const tw = document.getElementById('typewriter');
-let ri = 0, ci = 0, del = false;
-function type() {
-    const cur = roles[ri];
-    if (!del) {
-        tw.textContent = cur.slice(0, ci + 1);
-        ci++;
-        if (ci === cur.length) {
-            del = true;
-            setTimeout(type, 1400);
-            return;
-        }
-    } else {
-        tw.textContent = cur.slice(0, ci - 1);
-        ci--;
-        if (ci === 0) {
-            del = false;
-            ri = (ri + 1) % roles.length;
-        }
+  const roles=['Python Developer','Full Stack Engineer','Django Expert','API Architect','ML Engineer'];
+  const tw=document.getElementById('typewriter');
+  let ri=0,ci=0,del=false;
+  function type(){
+    const cur=roles[ri];
+    if(!del){
+      tw.textContent=cur.slice(0,ci+1);ci++;
+      if(ci===cur.length){del=true;setTimeout(type,1400);return;}
+    }else{
+      tw.textContent=cur.slice(0,ci-1);ci--;
+      if(ci===0){del=false;ri=(ri+1)%roles.length;}
     }
-    setTimeout(type, del ? 55 : 90);
-}
-setTimeout(type, 800);
+    setTimeout(type,del?55:90);
+  }
+  setTimeout(type,800);
 
   /* MAGNETIC BUTTONS */
   document.querySelectorAll('.btn').forEach(btn=>{
